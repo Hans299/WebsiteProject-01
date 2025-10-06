@@ -1,8 +1,46 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+// ===================================================================
+// SUSUNAN FINAL UNTUK FILE: resources/sass/app.scss
+// ===================================================================
 
-// Variables
-@import 'variables';
+// 1. MEMUAT MODUL VARIABEL (WAJIB PALING ATAS)
+// Aturan @use harus selalu menjadi yang pertama untuk memuat
+// variabel kustom Anda dari file _variables.scss.
+@use 'variables' as *;
 
-// Bootstrap
+// 2. IMPOR FONT EKSTERNAL
+// Setelah @use, Anda bisa mengimpor aset eksternal seperti
+// Google Fonts dan Material Icons.
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
+// 3. IMPOR LIBRARY UTAMA BOOTSTRAP
+// Baris ini akan memuat seluruh framework Bootstrap.
+// Bootstrap akan secara otomatis menggunakan variabel ($primary, $font-family-sans-serif, dll)
+// yang sudah Anda definisikan di _variables.scss.
 @import 'bootstrap/scss/bootstrap';
+
+// 4. STYLE KUSTOM TAMBAHAN ANDA
+// Letakkan semua kelas dan style kustom Anda di bagian paling bawah.
+// Ini memastikan style Anda bisa menimpa (override) default Bootstrap jika perlu.
+
+// Kelas utilitas untuk lebar sidebar
+.w-280px {
+    width: 280px;
+}
+
+// Styling untuk ikon agar konsisten
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+
+// Styling untuk navigasi di sidebar
+.nav-link:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+// Kelas kustom untuk menandai link navigasi yang sedang aktif
+.nav-link.active-nav {
+    background-color: rgba(var(--bs-primary-rgb), 0.2);
+    color: var(--bs-primary) !important;
+}
