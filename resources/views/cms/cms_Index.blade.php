@@ -41,9 +41,7 @@
                     <p class="small text-muted mb-0">admin@example.com</p>
                 </div>
             </div>
-
-            <nav class="nav flex-column gap-2">
-                <a class="nav-link active bg-danger bg-opacity-10 text-danger rounded" href="#">
+                <a class="nav-link text-dark" href="#">
                     <span class="material-symbols-outlined me-2">dashboard</span>
                     Dashboard
                 </a>
