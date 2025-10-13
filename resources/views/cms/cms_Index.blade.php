@@ -83,7 +83,23 @@
                 <button class="btn btn-light rounded-circle">
                     <span class="material-symbols-outlined">notifications</span>
                 </button>
-                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB27F8uzbNpFtTAuTDQzOVxXomtvlmPY7TiAV0ug4Cukto3A_3iAI-qmNYQT9-8Dhfkw6OIKEGC7DIQVNlAbl0iPPWT1Z3a9zdFkBBzWzxeS-FSRAwgNc0-YxD9gYyKx--7rt5SzhMFyXdAoyveqyVDyuPqJICHqS0fShGjcqY0jyuEZI-UYjvYi8Jf1HSotgMpxbBM6R_94XoPRn4wnd8In23yaFPD4bsr8FwP33W17H7YcDD6i5ny_vA8De0BfphYp3tJ9dkwQm8" alt="User avatar" class="rounded-circle" width="40" height="40">
+                <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
             </div>
         </header>
 

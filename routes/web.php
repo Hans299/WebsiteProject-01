@@ -10,8 +10,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::middleware([SuperAdmin::class])->name('supervisor. ')->prefix('supervisor')->group(function(){
-    Route::get('/Dashboard',[CmsController::class, 'index']);
-});
-
+// Route::middleware([SuperAdmin::class])->name('supervisor. ')->prefix('supervisor')->group(function(){
+   
+// });
+//  Route::get('/Dashboard',[CmsController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
