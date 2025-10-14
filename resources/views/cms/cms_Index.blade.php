@@ -37,30 +37,34 @@
             <div class="d-flex align-items-center gap-3 mb-4">
                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWdySbvFSbB1HwsVNcAcym2Wc-KuYbsCHq3skX9Zn0w_1HKgdoyl4m1YtvHabh3dbAUjMUtN-jCdgOlQLY78G5YTimNowO_7lGneBvRWnn8jJMSsU4nWR9umd-nnVnSh9tjDdaDqFHWY5yDRgEEUS7uczfpKvupvzWdAFwh0NSCUg1EQH_YEp1E7dDxyodEQtTvL02gxRgg256sB_HBUPBQE12phE-yx6BiN9_Docmu297anwwHSRZ0QU08-2wITCWnpak_n7WKnw" alt="Admin avatar" class="rounded-circle" width="40" height="40">
                 <div>
-                    <h1 class="fs-6 fw-medium text-dark mb-0">Admin</h1>
-                    <p class="small text-muted mb-0">admin@example.com</p>
+                    <h1 class="fs-6 fw-medium text-dark mb-0">{{ Auth::user()->name }}</h1>
+                    <p class="small text-muted mb-0">{{ Auth::user()->email }}</p>
                 </div>
             </div>
-                <a class="nav-link text-dark" href="#">
-                    <span class="material-symbols-outlined me-2">dashboard</span>
-                    Dashboard
+                <a class="nav-link text-dark" href="/landing">
+                    <span class="material-symbols-outlined me-2">Dashboard</span>
+                    News Portal
                 </a>
-                <a class="nav-link text-dark" href="#">
+                <a class="nav-link text-dark" href="/berita">
                     <span class="material-symbols-outlined me-2">article</span>
                     Articles
                 </a>
-                <a class="nav-link text-dark" href="#">
+                @if(Auth::user()->role->Nama_Role == 'supervisor')
+                <a class="nav-link text-dark" href="/supervisor/user">
                     <span class="material-symbols-outlined me-2">group</span>
                     Users
                 </a>
+                @endif
                 <a class="nav-link text-dark" href="#">
                     <span class="material-symbols-outlined me-2">sell</span>
                     Categories
                 </a>
+                @if(Auth::user()->role->Nama_Role=='admin')
                 <a class="nav-link text-dark" href="#">
                     <span class="material-symbols-outlined me-2">settings</span>
                     Settings
                 </a>
+                @endif
             </nav>
         </div>
     </aside>

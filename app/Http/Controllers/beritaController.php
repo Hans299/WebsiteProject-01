@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class CmsController extends Controller
+class beritaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('cms.cms_Dashboard');
+        if (Auth::check() && Auth::user()->role_id==3){
+            abort(403,'anda tidak dapat mengakses halaman ini');
+        }
+        return view('cms.createBerita');
     }
 
     /**
@@ -19,7 +23,7 @@ class CmsController extends Controller
      */
     public function create()
     {
-        //
+        return view('content.content_create');
     }
 
     /**

@@ -4,78 +4,43 @@
 
 @section('content')
 
-    <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white d-flex justify-content-between align-items-center">
-            <h3 class="fs-5 fw-semibold mb-0">Recent Articles</h3>
-            <a href="#" class="btn btn-danger btn-sm">
-                <span class="material-symbols-outlined fs-6 me-1">add</span>
-                Add New Article
-            </a>
+   <div class="col-lg">
+            <div class="vstack gap-4">
+                {{-- Kartu Profil Pengguna --}}
+                <div class="card shadow-sm">
+                    <div class="card-body d-flex flex-column align-items-center text-center p-4">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiuJSA5UbAZuJ0OFqhlnej7BYI8YDOy6OJxREq3xDpiazXpjNESc_svbEtZPm2nRiacTvcgHHlWr5RDxUDqcc7EC2zOJXUeIN-klHvdzVv0PiblqgbEXvyO2x9bHg79LBJ3nXoi1krH5p49xBK5OzwiXIESDDcUrskTxazVDCPrpXd_jc1mCZjmvPtt3V-SsX2IDTbycYYt7H5LPMJr_IlsM_wyPG1Fv3NGs6GwteCskLzdpx0uY7CjuLQfOQGJSRb8iiIWZI7JD0" alt="User avatar" class="rounded-circle mb-3" style="width: 128px; height: 128px;">
+                        <h3 class="card-title fw-bold">{{ Auth::user()->name }}</h3>
+                        <p class="card-text text-muted">
+                            {{ Auth::user()->role->Nama_Role }} 
+                            {{--Memeriksa lewat Auth->mengambil table user->foreignkey ke table role->mengambil kolum yang dibutuhkan  --}}
+                        </p>
+                        <a href="#" class="btn btn-secondary w-100 mt-2 fw-bold">Edit Profile</a>
+                    </div>
+                </div>
+
+                {{-- Kartu Informasi Tambahan --}}
+                <div class="card shadow-sm">
+                    <div class="card-header bg-transparent">
+                         <h4 class="h6 mb-0 fw-bold">User Information</h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="text-muted">Email</span>
+                                <span>{{ Auth::user()->email }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="text-muted">Member Since</span>
+                                <span>January 1, 2023</span>
+                            </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="text-muted">Location</span>
+                                <span>New York, USA</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="table-responsive">
-            <table class="table table-hover table-nowrap mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="fw-medium">Breaking News: Market Hits Record High</td>
-                        <td>John Doe</td>
-                        <td><span class="badge text-bg-danger bg-opacity-10 text-danger-emphasis">Business</span></td>
-                        <td>Published</td>
-                        <td>
-                            <a class="text-danger text-decoration-none" href="#">Edit</a>
-                            <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="fw-medium">The Future of AI in Healthcare</td>
-                        <td>Jane Smith</td>
-                        <td><span class="badge text-bg-danger bg-opacity-10 text-danger-emphasis">Technology</span></td>
-                        <td>Published</td>
-                        <td>
-                             <a class="text-danger text-decoration-none" href="#">Edit</a>
-                            <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="fw-medium">Local Sports Team Wins Championship</td>
-                        <td>Mike Johnson</td>
-                        <td><span class="badge text-bg-danger bg-opacity-10 text-danger-emphasis">Sports</span></td>
-                        <td>Pending</td>
-                        <td>
-                             <a class="text-danger text-decoration-none" href="#">Edit</a>
-                            <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td class="fw-medium">Election Results Are In</td>
-                        <td>Sarah Brown</td>
-                        <td><span class="badge text-bg-danger bg-opacity-10 text-danger-emphasis">Politics</span></td>
-                        <td>Draft</td>
-                        <td>
-                             <a class="text-danger text-decoration-none" href="#">Edit</a>
-                            <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td class="fw-medium">New Innovations in Renewable Energy</td>
-                        <td>David Wilson</td>
-                        <td><span class="badge text-bg-danger bg-opacity-10 text-danger-emphasis">Technology</span></td>
-                        <td>Published</td>
-                        <td>
-                             <a class="text-danger text-decoration-none" href="#">Edit</a>
-                            <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 @endsection
