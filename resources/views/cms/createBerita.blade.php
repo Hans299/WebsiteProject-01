@@ -3,7 +3,7 @@
 <div class="card border-0 shadow-sm">
         <div class="card-header bg-white d-flex justify-content-between align-items-center">
             <h3 class="fs-5 fw-semibold mb-0">Recent Articles</h3>
-            <a href="{{ route('/berita/create') }}" class="btn btn-danger btn-sm">
+            <a href="{{ route('berita.create') }}" class="btn btn-danger btn-sm">
                 <span class="material-symbols-outlined fs-6 me-1">add</span>
                 Add New Article
             </a>
