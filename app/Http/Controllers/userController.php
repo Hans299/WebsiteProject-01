@@ -11,7 +11,7 @@ class userController extends Controller
      */
     public function index()
     {
-        return view('cms.createUser');
+        return view('cms.user.createUser');
     }
 
     /**
