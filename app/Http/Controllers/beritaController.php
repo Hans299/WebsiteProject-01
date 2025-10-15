@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+// PERBAIKAN: Memperbaiki kesalahan penulisan 'illuminate' menjadi 'Illuminate'.
 // Menggunakan nama model persis seperti yang Anda kembangkan.
 use App\Models\beritaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-// PERBAIKAN: Memperbaiki kesalahan penulisan 'illuminate' menjadi 'Illuminate'.
+
 use Illuminate\Support\Facades\Storage;
 
 class beritaController extends Controller

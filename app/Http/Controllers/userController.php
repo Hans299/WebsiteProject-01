@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class userController extends Controller
 {
@@ -11,6 +13,9 @@ class userController extends Controller
      */
     public function index()
     {
+        if (Auth::check() && Auth::user()->role_id == 3) {
+            abort(403, 'Anda tidak dapat mengakses halaman ini');
+        }
         return view('cms.user.createUser');
     }
 
@@ -19,7 +24,7 @@ class userController extends Controller
      */
     public function create()
     {
-        //
+        return view('cms.user.addUser');
     }
 
     /**

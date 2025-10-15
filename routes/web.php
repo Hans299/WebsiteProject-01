@@ -24,8 +24,10 @@ Route::post('berita',[beritaController::class,'store'])->name('berita.store');
 Route::get('/berita/{id}/edit',[beritaController::class,'edit'])->name('berita.edit');
 Route::put('/berita/{id}',[beritaController::class,'update'])->name('berita.update');
 Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+
 Route::middleware([SuperAdmin::class])->name('supervisor.')->prefix('supervisor')->group(function(){
    Route::get('/user',[userController::class,'index'])->name('user');
+   Route::get('/user/create',[userController::class,'create'])->name('user.create');
 });
 route::get('/contoh',function(){
     return view('content_create.blade');
