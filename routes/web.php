@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\beritaController;
-use App\Http\Controllers\CmsController;
 use App\Http\Controllers\contentController;
 use App\Http\Controllers\testingController;
 use App\Http\Controllers\userController;
@@ -28,6 +27,10 @@ Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berit
 Route::middleware([SuperAdmin::class])->name('supervisor.')->prefix('supervisor')->group(function(){
    Route::get('/user',[userController::class,'index'])->name('user');
    Route::get('/user/create',[userController::class,'create'])->name('user.create');
+   Route::post('/user',[userController::class,'store'])->name('user.store');
+   Route::get('/user/{id}/edit',[userController::class,'edit'])->name('user.edit');
+   Route::put('/user/{id}',[userController::class,'update'])->name('user.update');
+   Route::delete('/user/{id}',[userController::class,'destroy'])->name('user.destroy');
 });
 route::get('/contoh',function(){
     return view('content_create.blade');

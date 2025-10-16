@@ -41,9 +41,9 @@
                     <p class="small text-muted mb-0">{{ Auth::user()->email }}</p>
                 </div>
             </div>
-                <a class="nav-link text-dark" href="/landing">
+                <a class="nav-link text-dark" href="/home">
                     <span class="material-symbols-outlined me-2">Dashboard</span>
-                    News Portal
+                    Beranda
                 </a>
                 <a class="nav-link text-dark" href="/berita">
                     <span class="material-symbols-outlined me-2">article</span>
@@ -78,12 +78,10 @@
                 <h2 class="fs-5 fw-bold mb-0">NewsPortal</h2>
             </div>
             <div class="ms-auto d-flex align-items-center gap-3">
-                <div class="input-group">
-                     <span class="input-group-text bg-light border-end-0">
-                        <span class="material-symbols-outlined">search</span>
-                     </span>
-                    <input class="form-control border-start-0" placeholder="Search articles, users...">
-                </div>
+                <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer"class="btn btn-light d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined">cloud</span>
+                    <span>Google Drive</span>
+                </a>
                 <button class="btn btn-light rounded-circle">
                     <span class="material-symbols-outlined">notifications</span>
                 </button>

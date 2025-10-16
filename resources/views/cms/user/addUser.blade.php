@@ -5,9 +5,19 @@
         <h3 class="fs-5 fw-semibold mb-0">Add New User</h3>
         <p class="text-muted fs-7 mb-0">Fill the form below to add a new user to the system.</p>
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops! Ada yang salah dengan input Anda.</strong>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="card-body">
         {{-- Arahkan action ke route yang menangani proses penyimpanan user --}}
-        <form action="#" method="POST">
+        <form action="{{ route('supervisor.user.store') }}" method="POST">
             {{-- Token CSRF wajib untuk keamanan di Laravel --}}
             @csrf
 
@@ -23,11 +33,11 @@
 
             <div class="mb-3">
                 <label for="role" class="form-label fw-medium">Role</label>
-                <select class="form-select" id="role" name="role" required>
+                <select class="form-select" id="role" name="role_id" required>
                     <option selected disabled value="">Choose a role...</option>
-                    <option value="admin">supervisor</option>
-                    <option value="editor">admin</option>
-                    <option value="contributor">user</option>
+                    <option value="1">supervisor</option>
+                    <option value="2">admin</option>
+                    <option value="3">user</option>
                 </select>
             </div>
 

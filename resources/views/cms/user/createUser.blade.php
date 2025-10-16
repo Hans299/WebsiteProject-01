@@ -21,54 +21,33 @@
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
+            @foreach ($userData as $user)
             <tbody>
                 {{-- DIUBAH: Urutan data di setiap baris disesuaikan dengan header baru --}}
                 <tr>
-                    <td class="fw-medium">John Doe</td>
-                    <td>john.doe@example.com</td>
-                    <td>Admin</td>
+                    <td class="fw-medium">{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->role->Nama_Role }}</td>
                     <td>
-                        <a class="text-danger text-decoration-none" href="#">Edit</a>
-                        <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="fw-medium">Jane Smith</td>
-                    <td>jane.smith@example.com</td>
-                    <td>Editor</td>
-                    <td>
-                        <a class="text-danger text-decoration-none" href="#">Edit</a>
-                        <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="fw-medium">Mike Johnson</td>
-                    <td>mike.j@example.com</td>
-                    <td>Contributor</td>
-                    <td>
-                        <a class="text-danger text-decoration-none" href="#">Edit</a>
-                        <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="fw-medium">Sarah Brown</td>
-                    <td>sarah.b@example.com</td>
-                    <td>Editor</td>
-                    <td>
-                        <a class="text-danger text-decoration-none" href="#">Edit</a>
-                        <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="fw-medium">David Wilson</td>
-                    <td>d.wilson@example.com</td>
-                    <td>Admin</td>
-                    <td>
-                        <a class="text-danger text-decoration-none" href="#">Edit</a>
-                        <a class="text-danger text-decoration-none ms-2" href="#">Delete</a>
+                        {{-- TOMBOL EDIT (yang sudah benar) --}}
+                        <a href="{{ route('supervisor.user.edit', $user->id) }}" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        {{-- FORM DELETE (pastikan ini satu-satunya cara memanggil route destroy) --}}
+                        <form action="{{ route('supervisor.user.destroy', $user->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            
+                            <button type="submit" class="btn btn-danger btn-sm" 
+                                    onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">
+                                Delete
+                            </button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
+            @endforeach
         </table>
     </div>
 </div>

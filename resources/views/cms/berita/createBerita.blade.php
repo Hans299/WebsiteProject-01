@@ -31,11 +31,16 @@
 
             {{-- Tampilkan Status dengan dropdown --}}
             <td>
-                {{-- Logika untuk menentukan status mana yang terpilih --}}
-                <select class="form-select form-select-sm" name="status">
-                    <option value="publish" {{ $item->status == 'publish' ? 'selected' : '' }}>Publish</option>
-                    <option value="pending" {{ $item->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                </select>
+                  {{-- Form ini akan mengirim request ke route 'berita.updateStatus' --}}
+                <form action="{{ route('berita.updateStatus', $item->id) }}" method="POST">
+                    @csrf
+                    @method('PATCH') {{-- Menggunakan metode PATCH yang sesuai --}}
+
+                    <select class="form-select form-select-sm" name="status" onchange="this.form.submit()">
+                        <option value="publish" {{ $item->status == 'publish' ? 'selected' : '' }}>Publish</option>
+                        <option value="pending" {{ $item->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                    </select>
+                </form>
             </td>
 
             {{-- Tombol Aksi (Edit & Delete) --}}
