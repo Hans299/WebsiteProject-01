@@ -23,30 +23,25 @@
             <h2 class="fw-bold h4 mb-3">Trending Now</h2>
             <div class="horizontal-scroll overflow-x-auto">
                 <div class="d-flex flex-nowrap pb-3" style="gap: 1.5rem;">
-                    {{-- Item 1 --}}
+
+                    {{-- Memulai perulangan untuk setiap berita yang dikirim dari controller --}}
+                    @foreach ($beritaTrending as $berita)
                     <div style="min-width: 280px;">
-                        <div class="bg-cover rounded-3 mb-2" style="height: 160px; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbciGkn6zGtyiKDp0Ujh1agTPx9JISndlpC3wjT3QaSbS8oJm3FCcSp2nnC-6cEkn3WetOr6De07IdEaZ1ljBgkbIAL3TKVehLo5JL4X4p1M55QnoC7NIhqqnuoCrHGystot5jxNekdACjbkntoTA_47YCcwg2RinhwxjB2KsPxi7KQV1fcf_DpJnpou4aWXET1cMkbqHNY0gsDL9yITg292lOD3jPYh1kI9KFBSgvl02gpQobPsmt7xc9WM7uOoKcs1E8pGs5fhk');"></div>
-                        <p class="fw-medium">Market Hits Record Highs Amid Tech Boom</p>
+                        
+                        {{-- Bagian untuk menampilkan gambar sebagai background --}}
+                        <div class="bg-cover rounded-3 mb-2" 
+                            style="height: 160px; background-image: url('{{ asset('storage/img/' . $berita->gambar) }}');">
+                        </div>
+                        
+                        {{-- Bagian untuk menampilkan judul berita --}}
+                        <p class="fw-medium">{{ $berita->judul }}</p>
+
                     </div>
-                    {{-- Item 2 --}}
-                    <div style="min-width: 280px;">
-                        <div class="bg-cover rounded-3 mb-2" style="height: 160px; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDdOFnyw9nb-jbbkmqMRIv7zDPIODGjoEB8xZMSuogTdsQjastGaf4TEvQ79PzdhtiPsc1fla-fzcLyh4Mswl0hTy501KGgDxgIBrCl7_z23VZNUm5T7QtPjyWRILgmZi-5Bk-E-bHGNqluJmoBMjnBmS9zx6iiXwQT02uFo3fHcwbDp9sSnKnUBZV2t_M7tRG-krvrU6OS7w7eKh70ESC3SAtnVyKmcIGtdccAeuH4HBFNDLM7I09QsR5eGacpl1i2s7HS5mU0N1I');"></div>
-                        <p class="fw-medium">Breakthrough in Vaccine Development Announced</p>
-                    </div>
-                    {{-- Item 3 --}}
-                    <div style="min-width: 280px;">
-                        <div class="bg-cover rounded-3 mb-2" style="height: 160px; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDp5tlCdhDI4IdwSJWiujOYIFuujorrCFwwRZ-FfCog0hqVgpqkXzA5EZ6UC7ELXaBT_K1XVqahHe3dh21zqmtx9VXu4uSDbax5f_rwvow2Ss2im8YMNY9uBaCK0M4ctz9SfDcdXkAjtB-WunjIZc3PI7Xj-dRdfrl9DjBOeKmRW5thrVOhOYB3XllW6ARjL1JDzFuQvoi9ywoLQ0y0fAnKCra7z1N5_HFRl6-GourY-G54njAkodpNJlTzhc-apVOFu_51z-sIEE');"></div>
-                        <p class="fw-medium">Underdogs Clinch Championship in Stunning Upset</p>
-                    </div>
-                    {{-- Item 4 --}}
-                    <div style="min-width: 280px;">
-                        <div class="bg-cover rounded-3 mb-2" style="height: 160px; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCqwBpxcuZ9VFZhoFQCybhe2XiMs1BBbod3m4mbSHoaGaLZq1mbMWzyOzipts5KHhU53tT-GtamIxSPpjpsBpgZKQIC0_Ub3KOC1CHkYxPt-cS6mCb9DGx9cfNSaNUeWROtyN43XFZXqK8RCEn5Pe2ewTGgnOJgfZyRog4SRNGNirH_4VausfssFNM6NVWTj1NE4IaAo_bfOO_5nf7Szlw0b56yXpA6tPRP9wzv9Efe3MrW8QAdw1iIs_rV6zbq8-zsf2XCMJ1a4c');"></div>
-                        <p class="fw-medium">The Future of Transportation: Self-Driving Cars</p>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </section>
-
         {{-- World News Section --}}
         <section class="mt-5">
             <h2 class="fw-bold h4 mb-3">World News</h2>

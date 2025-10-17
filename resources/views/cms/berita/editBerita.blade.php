@@ -42,7 +42,7 @@
                 <label for="gambar" class="form-label fw-semibold">Gambar (Kosongkan jika tidak ingin diubah)</label>
                 <br>
                 {{-- Tampilkan gambar yang ada saat ini --}}
-                <img src="{{ asset('storage/img/' . $berita->gambar) }}" width="200" class="img-thumbnail mt-2 mb-3">
+                <img src="{{ asset('uploads/img/' . $berita->gambar) }}" width="200" class="img-thumbnail mt-2 mb-3">
                 <input type="file" name="gambar" id="gambar" class="form-control">
             </div>
             

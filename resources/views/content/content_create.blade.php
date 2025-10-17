@@ -3,6 +3,16 @@
     <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-xl-7">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops! Ada beberapa masalah dengan input Anda.</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             
             <div class="text-center mb-5">
                 <h1 class="display-4 fw-bolder">Add New Article</h1>

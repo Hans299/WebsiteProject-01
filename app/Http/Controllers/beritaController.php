@@ -44,34 +44,53 @@ class beritaController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'judul' => 'required|string|max:255',
-            'isi' => 'required|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+    //     // 1. Menangani unggahan file gambar.
+    //     // Membuat nama file yang unik berdasarkan waktu untuk menghindari duplikasi.
+    //     $imageName = 'img-' . time() . '.' . $request->file('gambar')->extension();
+        
+    //     // Menyimpan file ke dalam direktori 'storage/app/public/img'.
+    //     $request->file('gambar')->storePubliclyAs('img', $imageName);
 
-        if ($validator->fails()) {
-            // PERBAIKAN LOGIKA: Jika validasi gagal, kembalikan ke form create, bukan ke halaman daftar.
-            // Asumsi route untuk method create() Anda bernama 'berita.create'.
-            return redirect()->route('berita.create')
-                        ->withErrors($validator)
-                        ->withInput();
+    //     // 2. Membuat record baru di database menggunakan data dari request.
+    //     beritaModel::create([
+    //         'judul' => $request->judul,
+    //         'isi' => $request->isi,
+    //         'gambar' => $imageName, // Menyimpan nama file ke database.
+    //     ]);
+
+    //     // 3. Mengarahkan kembali ke halaman daftar berita dengan pesan sukses.
+    //     // Asumsi nama route untuk halaman daftar berita adalah 'berita.index'.
+    //     return redirect()->route('berita')->with('success', 'Berita berhasil ditambahkan!');
+    if ($request->hasFile('gambar')) {
+            
+            // Mengambil object file dari request
+            $gambar = $request->file('gambar');
+            
+            // Membuat nama file baru yang unik
+            // Format: nama-unik-berdasarkan-waktu.ekstensi
+            $namaGambar = 'img-' . time() . '.' . $gambar->getClientOriginalExtension();
+
+            // Menentukan folder tujuan di dalam direktori 'public'
+            $tujuanFolder = 'uploads/img';
+
+            // 3. Memindahkan file dari lokasi sementara ke folder tujuan
+            $gambar->move($tujuanFolder, $namaGambar);
+
+            // 4. Menyimpan data ke database
+            beritaModel::create([
+                'judul' => $request->judul,
+                  'isi' => $request->isi,
+                'gambar' => $namaGambar, // Simpan nama file yang baru
+            ]);
+
+            // 5. Mengarahkan kembali dengan pesan sukses
+             return redirect()->route('berita')->with('success', 'Berita berhasil ditambahkan!');
+
         }
 
-        $imageName = 'img-' . time() . '.' . $request->file('gambar')->extension();
-        $request->file('gambar')->storeAs('public/img', $imageName);
-
-        // Menggunakan model 'beritaModel' untuk menyimpan data.
-        beritaModel::create([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'gambar' => $imageName,
-        ]);
-
-        // Mengarahkan ke halaman daftar (index) setelah berhasil.
-        // Asumsi route untuk method index() Anda bernama 'berita.index' atau 'berita'.
-        return redirect()->route('berita')->with('success', 'Berita berhasil ditambahkan!');
-    }
+        // Jika tidak ada file, kembali dengan error
+        return back()->with('error', 'Gagal mengunggah gambar.');
+     }
 
     /**
      * Display the specified resource.
@@ -80,6 +99,28 @@ class beritaController extends Controller
     public function show(string $id)
     {
         //
+    }
+    /**
+ * Update status berita (publish/pending).
+ */
+    public function updateStatus(Request $request, string $id)
+    {
+        // Validasi input
+        $request->validate([
+            'status' => 'required|in:publish,pending',
+        ]);
+
+        // Cari berita
+        $berita = beritaModel::findOrFail($id);
+
+        // Update statusnya
+        $berita->status = $request->status;
+
+        // Simpan ke database
+        $berita->save();
+
+        // Kembalikan ke halaman sebelumnya dengan pesan sukses
+        return redirect()->back()->with('success', 'Status berita berhasil diperbarui!');
     }
 
     /**
@@ -103,7 +144,7 @@ class beritaController extends Controller
         $validatedData = $request->validate([
             'judul' => 'required|string|max:255',
             'isi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         if ($request->hasFile('gambar')) {
