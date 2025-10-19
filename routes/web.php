@@ -31,7 +31,7 @@ Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berit
 
 // TAMBAHKAN ROUTE INI
 Route::patch('/berita/{id}/update-status', [beritaController::class, 'updateStatus'])->name('berita.updateStatus');
-
+Route::get('/berita/{id}', [landingBeritaController::class, 'show'])->name('berita.show');
 
 Route::middleware([SuperAdmin::class])->name('supervisor.')->prefix('supervisor')->group(function(){
    Route::get('/user',[userController::class,'index'])->name('user');

@@ -20,70 +20,50 @@
 
         {{-- Trending Section --}}
         <section class="mt-5">
-            <h2 class="fw-bold h4 mb-3">Trending Now</h2>
+            <h2 class="fw-bold h4 mb-3">News </h2>
+            
+            {{-- 
+            HANYA PERLU SATU div 'horizontal-scroll'. 
+            Saya sudah hapus yang duplikat.
+            --}}
             <div class="horizontal-scroll overflow-x-auto">
                 <div class="d-flex flex-nowrap pb-3" style="gap: 1.5rem;">
 
-                    {{-- Memulai perulangan untuk setiap berita yang dikirim dari controller --}}
+                    {{-- Memulai perulangan untuk setiap berita --}}
                     @foreach ($beritaTrending as $berita)
-                    <div style="min-width: 280px;">
                         
-                        {{-- Bagian untuk menampilkan gambar sebagai background --}}
-                        <div class="bg-cover rounded-3 mb-2" 
-                            style="height: 160px; background-image: url('{{ asset('storage/img/' . $berita->gambar) }}');">
-                        </div>
-                        
-                        {{-- Bagian untuk menampilkan judul berita --}}
-                        <p class="fw-medium">{{ $berita->judul }}</p>
+                        <div class="card shadow-sm" style="min-width: 280px; flex-shrink: 0;">
+                            
+                            {{-- 1. BAGIAN GAMBAR (SEBAGAI LINK) --}}
+                            <a href="{{-- GANTI DENGAN URL DETAIL BERITA --}}">
+                                <img src="{{ asset('uploads/img/' . $berita->gambar) }}" 
+                                    class="card-img-top" 
+                                    alt="{{ $berita->Judul }}"
+                                    style="height: 160px; object-fit: cover;">
+                            </a>
+                            
+                            {{-- 2. BAGIAN BADAN CARD (UNTUK TEKS/JUDUL) --}}
+                            <div class="card-body">
+                                
+                                {{-- 3. BAGIAN JUDUL (SEBAGAI LINK) --}}
+                                <h5 class="card-title fw-medium">
+                                    <a href="{{ route('berita.show', $berita->id) }}" class="text-decoration-none text-dark">
+                                        
+                                        {{-- INI YANG MENAMPILKAN JUDUL (SUDAH BENAR) --}}
+                                        {{  $berita->Judul }}
 
-                    </div>
+                                    </a>
+                                </h5>
+                            </div>
+
+                        </div>
+
                     @endforeach
 
                 </div>
             </div>
+            {{-- 
+            SAYA SUDAH HAPUS '</div>' EKSTRA YANG SEBELUMNYA ADA DI SINI 
+            --}}
         </section>
-        {{-- World News Section --}}
-        <section class="mt-5">
-            <h2 class="fw-bold h4 mb-3">World News</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                @for ($i = 0; $i < 3; $i++)
-                <div class="col">
-                    <div class="card h-100 border-0 border-bottom rounded-0 pb-2">
-                        <div class="bg-cover rounded-3" style="height: 180px; background-image: url('http://googleusercontent.com/profile/picture/{{10 + $i}}');"></div>
-                        <div class="card-body px-0">
-                            <h5 class="card-title fw-medium">New Trade Deal Forged in Europe</h5>
-                            <p class="card-text text-muted">Leaders finalize an agreement that will impact continental commerce for years to come.</p>
-                        </div>
-                    </div>
-                </div>
-                @endfor
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-outline-primary fw-bold px-4">Load More</button>
-            </div>
-        </section>
-        
-        {{-- Technology Section --}}
-        <section class="mt-5">
-            <h2 class="fw-bold h4 mb-3">Technology</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                 @for ($i = 0; $i < 3; $i++)
-                <div class="col">
-                    <div class="card h-100 border-0 border-bottom rounded-0 pb-2">
-                        <div class="bg-cover rounded-3" style="height: 180px; background-image: url('http://googleusercontent.com/profile/picture/{{13 + $i}}');"></div>
-                        <div class="card-body px-0">
-                            <h5 class="card-title fw-medium">The Rise of Artificial Intelligence</h5>
-                            <p class="card-text text-muted">How AI is reshaping industries and what it means for the future of work.</p>
-                        </div>
-                    </div>
-                </div>
-                @endfor
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-outline-primary fw-bold px-4">Load More</button>
-            </div>
-        </section>
-
-    </div>
-</div>
 @endsection

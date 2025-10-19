@@ -19,16 +19,33 @@ class landingBeritaController extends Controller
         // INI BAGIAN PALING PENTING: HENTIKAN DAN TAMPILKAN ISINYA
         // dd($beritaTrending);
         // ==========================================================
-
-        // Kode di bawah ini tidak akan dijalankan sementara
-    //     $beritaTrending = [
-    //     (object)['judul' => 'Ini Judul Berita Palsu 1', 'gambar' => 'nama_gambar1.jpg'],
-    //     (object)['judul' => 'Ini Judul Berita Palsu 2', 'gambar' => 'nama_gambar2.jpg'],
-    // ];
-
     // Pastikan nama view sudah benar sesuai nama file Anda
         return view('content.content_landing', [
             'beritaTrending' => $beritaTrending
         ]);
     }
+    public function show($id) // 1. Menerima $id dari URL
+    {
+         // 1. Menerima $id dari URL
+        // 2. Ambil SATU berita utama berdasarkan id
+        $berita = beritaModel::where('id', $id)
+                             ->where('status', 'publish')
+                             ->firstOrFail(); // Akan 404 jika tidak ketemu
+
+        // 3. Ambil 5 berita trending untuk list di bawah
+        $beritaTrending = beritaModel::where('status', 'publish')
+                                 ->where('id', '!=', $berita->id) // Agar berita utama tidak muncul lagi
+                                 ->latest()
+                                 ->take(5)
+                                 ->get();
+
+        // 4. Kirim KEDUA data ke view detail Anda
+        // Ganti 'berita.show' jika nama file view Anda berbeda
+        
+        return view('content.content_index', [
+            'berita' => $berita,                // Data artikel utama
+            'beritaTrending' => $beritaTrending // Data untuk @foreach di bawah
+        ]);
+    }
+    
 }

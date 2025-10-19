@@ -78,7 +78,7 @@
                 <h2 class="fs-5 fw-bold mb-0">NewsPortal</h2>
             </div>
             <div class="ms-auto d-flex align-items-center gap-3">
-                <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer"class="btn btn-light d-flex align-items-center gap-2">
+                <a href="https://drive.google.com/drive/folders/1XAfTXoUUQPJtfp7Mu9jNsSJxxnobzQSp" target="_blank" rel="noopener noreferrer"class="btn btn-light d-flex align-items-center gap-2">
                     <span class="material-symbols-outlined">cloud</span>
                     <span>Google Drive</span>
                 </a>
